@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: cardEntrance 0.8s ease-out forwards;
+        }
+
+        @keyframes cardEntrance {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .cake {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .plate {
+            width: 160px;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .layer {
+            width: 140px;
+            height: 50px;
+            background: #f8c4d1;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .layer-1 {
+            bottom: 20px;
+            height: 60px;
+            background: #f8a5c2;
+        }
+
+        .layer-2 {
+            bottom: 80px;
+            height: 40px;
+        }
+
+        .icing {
+            width: 140px;
+            height: 15px;
+            background: #fdeff4;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: #ffd166;
+            position: absolute;
+            bottom: 135px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .flame {
+            width: 15px;
+            height: 30px;
+            background: #ff9e00;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            bottom: 175px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px #ff9e00, 0 0 40px #ff9e00;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .flame.active {
+            opacity: 1;
+            animation: flicker 0.8s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        .message {
+            margin: 20px 0;
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cake {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .layer, .layer-1, .layer-2 {
+                width: 110px;
+            }
+            
+            .icing {
+                width: 110px;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        
+        <div class="cake">
+            <div class="plate"></div>
+            <div class="layer layer-1"></div>
+            <div class="layer layer-2"></div>
+            <div class="icing"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+        
+        <p class="message">Wishing you a day filled with happiness and a year filled with joy. May all your dreams come true! veeksha</p>
+        
+        <button class="btn" id="wishBtn">Make a Wish!</button>
+        
+        <div class="balloons" id="balloons"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishBtn = document.getElementById('wishBtn');
+            const flame = document.querySelector('.flame');
+            const balloonsContainer = document.getElementById('balloons');
+            const card = document.querySelector('.card');
+            
+            // Create balloons
+            function createBalloons() {
+                const colors = ['#ff6b6b', '#48dbfb', '#1dd1a1', '#feca57', '#5f27cd'];
+                
+                for (let i = 0; i < 12; i++) {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.style.left = Math.random() * 80 + 10 + '%';
+                    balloon.style.top = Math.random() * 80 + 10 + '%';
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+                    balloonsContainer.appendChild(balloon);
+                    
+                    // Animate balloons
+                    setTimeout(() => {
+                        balloon.style.opacity = '0.8';
+                        balloon.style.transition = `all ${Math.random() * 3 + 2}s ease-in-out`;
+                        balloon.style.transform = `translateY(-${Math.random() * 100 + 50}px) rotate(${Math.random() * 360}deg)`;
+                    }, i * 200);
+                }
+            }
+            
+            // Create confetti
+            function createConfetti() {
+                const colors = ['#ff6b6b', '#48dbfb', '#1dd1a1', '#feca57', '#5f27cd'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    confetti.style.width = Math.random() * 8 + 5 + 'px';
+                    confetti.style.height = Math.random() * 8 + 5 + 'px';
+                    card.appendChild(confetti);
+                    
+                    // Animate confetti
+                    setTimeout(() => {
+                        confetti.style.opacity = '1';
+                        confetti.style.transition = `all ${Math.random() * 3 + 2}s ease-out`;
+                        confetti.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 500 + 300}px) rotate(${Math.random() * 720}deg)`;
+                        confetti.style.opacity = '0';
+                    }, i * 30);
+                }
+            }
+            
+            wishBtn.addEventListener('click', function() {
+                // Light the candle
+                flame.classList.add('active');
+                
+                // Create balloons
+                createBalloons();
+                
+                // Create confetti
+                createConfetti();
+                
+                // Change button text
+                wishBtn.textContent = 'Wish Granted!';
+                wishBtn.style.backgroundColor = '#1dd1a1';
+                wishBtn.style.boxShadow = '0 5px 15px rgba(29, 209, 161, 0.4)';
+                
+                // Disable button after click
+                wishBtn.disabled = true;
+                
+                // Play sound (optional - uncomment if you want sound)
+                // const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-birthday-balloons-619.mp3');
+                // audio.play();
+            });
+        });
+    </script>
+</body>
+</html>
